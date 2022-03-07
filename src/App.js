@@ -1,24 +1,14 @@
 import logo from './logo.svg';
-import './App.css';
-
+import './components/CenterPane.css';
+import LeftMenu from './components/LeftMenu';
+import CenterPane from './components/CenterPane';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div id="container">
+    <CenterPane/>
+    <LeftMenu/>
+
+   </div>
   );
 }
 
