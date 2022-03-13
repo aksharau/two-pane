@@ -1,22 +1,30 @@
-import {React, useState} from 'react';
-import logo from './logo.svg';
-import './components/CenterPane.css';
-import LeftMenu from './components/LeftMenu';
-import CenterPane from './components/CenterPane';
+import React, { useState } from 'react';
+
+import Login from './components/Login/Login';
+import Home from './components/Home/Home';
+import MainHeader from './components/MainHeader/MainHeader';
+
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [data,setCentrePaneData] = useState('');
-
-  function submitMenuChange(itemClicked) {
-    let moreInfo = "Some more stuff about...." + itemClicked;
-    setCentrePaneData(moreInfo);
+  const loginHandler = (email, password) => {
+    // We should of course check email and password
+    // But it's just a dummy/ demo anyways
+    setIsLoggedIn(true);
   };
-  return (
-    <div id="container">
-    <CenterPane data={data}/>
-    <LeftMenu onMenuSelect={submitMenuChange}/>
 
-   </div>
+  const logoutHandler = () => {
+    setIsLoggedIn(false);
+  };
+
+  return (
+    <React.Fragment>
+      <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
+      <main>
+        {!isLoggedIn && <Login onLogin={loginHandler} />}
+        {isLoggedIn && <Home onLogout={logoutHandler} />}
+      </main>
+    </React.Fragment>
   );
 }
 
